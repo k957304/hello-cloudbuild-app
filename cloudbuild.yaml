@@ -52,9 +52,9 @@ steps:
     git clone https://github.com/k957304/hello-cloudbuild-env && \
     cd hello-cloudbuild-env && \
     git checkout candidate && \
-    echo "git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')" && \
-    #git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
-    git config user.email k957304@gmail.com
+    #echo "git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')" && \
+    git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
+    #git config user.email k957304@gmail.com
 # This step generates the new manifest
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Generate manifest
@@ -77,6 +77,6 @@ steps:
     git commit -m "Deploying image gcr.io/${PROJECT_ID}/hello-cloudbuild:${SHORT_SHA}
     Built from commit ${COMMIT_SHA} of repository hello-cloudbuild-app
     Author: $(git log --format='%an <%ae>' -n 1 HEAD)" && \
-    git remote add origin https://k957304:dep2020!12@github.com/k957304/hello-cloudbuild-app.git
-    git push origin 
+    #git remote add origin https://k957304:dep2020!12@github.com/k957304/hello-cloudbuild-app.git
+    git push origin production
 # [END cloudbuild-trigger-cd]
